@@ -1,0 +1,17 @@
+--*creating react project:--
+1)by using npx:
+npx create-react-app learning
+cd learning
+npm start
+
+
+*react vs angular ))
+*react folder structure ))
+
+---*Component---
+
+-How to display component o/p:
+
+
+--*props---
+
