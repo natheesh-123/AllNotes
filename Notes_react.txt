@@ -26,6 +26,12 @@ npm start
 ---*Component---
 
 -How to display component o/p:
+-display a component's output by rendering the component within another component or directly in the root element.
+1.Create a component using a function or a class.
+
+2.Use the component in JSX by writing it like an HTML tag (<ComponentName />).
+=>using in another component =>App.js
+3.Render the root component to the DOM using React's rendering methods.
 
 
 --*props---

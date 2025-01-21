@@ -1,0 +1,132 @@
+
+#*VS code setup for HCJ:
+
+-Go to "File" > "Open Folder" and create a new folder for your project.
+
+
+=>in HTML file using HCJ:
+
+-In project folder create new files:
+	1.index.html for HTML
+	2.for CSS:
+		1)Inline css:- use (style=" ") attribute to directly specify the css.
+		2)Internal css:- css is written inside ( <style> )tag within the <head> section of the HTML file.
+		3)external css:- (separate ( style.css )  & using <Link> tag to specify the css file in (HTML <head> section))
+			
+     -selectors:CSS selectors are used to "select" and style specific HTML elements(for both internal css and external css)
+		1)element (or) tag name (or) --type-- selector :
+			-In this we use element or tag name to aply css property
+			ex:/* Styles all `<p>` tags */
+				p {
+					color: blue;
+					font-size: 16px;
+				}
+
+				HTML:
+
+				<p>This is a paragraph.</p>
+				<p>This is another paragraph.</p>
+
+		2)Group selector : 
+			-in this we make group selector to apply css property for multiple elements
+			ex:/* Styles both `<h1>` and `<p>` tags */
+				h1, p {
+					font-family: Arial, sans-serif;
+					color: gray;
+				}
+
+				HTML file:
+
+				<h1>This is a heading.</h1>
+				<p>This is a paragraph.</p>
+
+		3)Id selector : 
+			-if you have to apply css property to an single element in that case we use it
+			ex:/* Styles the element with the ID "main-heading" */
+				#main-heading {
+					font-size: 24px;
+					color: green;
+				}
+
+				HTML file:
+
+				<h1 id="main-heading">This is the main heading.</h1>
+				<p>This is a normal paragraph.</p>
+
+
+		4)Class Selector : 
+			-if you have to apply a specific css property to a bunch of elements
+			-Selects elements with a specific class.
+			ex:/* Styles elements with the "highlight" class */
+				.highlight {
+					background-color: yellow;
+					font-weight: bold;
+				}
+
+				HTML file:
+
+				<p class="highlight">This paragraph has a highlighted background.</p>
+				<p>This paragraph is not highlighted.</p>
+
+
+		5)Universal Selector : 
+			-if you have to apply css property to all elements
+			-Selects all elements on the page.
+			ex:/* Styles every element */
+				* {
+					margin: 0;
+					padding: 0;
+					box-sizing: border-box;
+				}
+
+				HTML file:
+
+				<div>Content inside a div</div>
+				<p>Content inside a paragraph</p>
+
+
+
+
+	3.for Javascript:
+		1)Inline JS:-  JS is written directly within an HTML elements attribute (rarely used)
+			ex: <button onclick="alert('button clicked')" >click me </button>
+					(OR)
+			    <button onclick="ShowAllert()" >click me </button>
+
+		2)Internal JS:- write code inside <script> tag in HTML <body> section.
+			ex:<script> hi write code here </script>
+		3)External JS:- (separate ( simple.js ) & specify js file in <script> inside (HTML <head> section)	
+			ex: <script src="./validation.js"></script>
+		
+	@note : use <script> in either  <head> or <body> section.
+		
+=>in Javascript file using HCJ:
+	1.simple.js for javascript
+
+	2.for CSS: & 3.for HTML:
+		in the above simple.js file , you can manipulate HTML and css using the Document Object Model(DOM).
+		
+	
+
+In react 
+
+
+	1.HTML in React
+		-you can write HTML using JSX syntax inside Javascript files. JSX allows you to write HTML-like code
+		 that react react compiles
+		-JSX uses camel case for attributes (eg. className(xx class) htmlFor instead of for)
+		-JSX expressions must be wrapped in a single parent element, like <div> 
+		
+	2.CSS in React
+		1)Internal css:- 
+
+		2)External css:-
+
+		3)Module css:-
+			-it is used when we have to design for a particuler component
+            -we save file with fileName.module.css
+
+
+-Write and link files:
+	-create HTML structure in index.html
+	-

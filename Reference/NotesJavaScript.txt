@@ -7,14 +7,21 @@
 - it is used to add funcationally into webapp
 - it is interpreted language
 - it is loosely typed language:
-    -when we crate a varible in javascriptwe cannot determine what type data it contain, until and unless it is initialized
-    -in javascript variable we can store a multiple type of value sin a variable, that's why javascript is called loosytypes language
-
+   
 Q. Why javascript is a loosely typed language
+    -when we crate a varible in javascriptwe cannot determine what type data it contain, until and unless it is initialized
+    -in javascript variable we can store a multiple type of values in a variable, that's why javascript is called loosytypes language
+
+*Vs code setup for html css js:
 
 
-*2 ways to use javascript
-1. internal javascript :  in html file we use script tah and in that we write js code.
+
+
+
+
+*how to use Javascript:
+-2 ways to use javascript
+1. internal javascript :  in html file we use script tag and in that we write js code.
 2. external javascript :    in this we cerate a seprate js file and import that js file and import that js file in html file by using script tag
 
 

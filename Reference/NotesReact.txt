@@ -2,14 +2,14 @@
 2/12/2024
 *********
 
-*React -it is a javascript library.
+#*React -it is a javascript library.
         -it is used to create rich user interface
         -it create single page applicaton(SPA)
 
-*pre-requisit techlology
+#*pre-requisit techlology
     -HTML, CSS, JS(basicJS, ES5, ES6, OOPs)
 
-*S/W pre-requisit
+#*S/W pre-requisit
     -nodejs
         -node -v
         -npm -v
@@ -17,7 +17,7 @@
 
 
 
-*creation of react project:
+#*creation of react project:
 -3 ways to Create a react Project
     1. by using npm : need to install configuration file.
                    1: npm instal/i -g create-react-app
@@ -35,7 +35,7 @@
 
 
 
-React vs Angular
+*React vs Angular
 
 Parameters                  React               Angular
 Library/Framework           Library             Framework
@@ -123,7 +123,7 @@ render : display component output or view on browser
 *How to use CSS in React:
 -Three ways to use css:
 1. internal css: 
-2. external css
+2. external css:
 3. module css : -it is used when we have to design for a particuler component
                 -we save file with fileName.module.css
 
