@@ -4,6 +4,21 @@ npx create-react-app learning
 cd learning
 npm start
 
+*3 ways to Create a react Project
+    1. by using npm : need to install configuration file.
+                   1: npm instal/i -g create-react-app
+                   2: create-react-app appname
+                   3: cd appname
+                   4: npm start
+
+    2. by using npx : no need to install configuration file.
+                    1: npx create-react-app appname
+                    2: cd appname
+                    3: npm start
+
+    3. by using vite : it creates a project with minimum packages.
+
+
 
 *react vs angular ))
 *react folder structure ))

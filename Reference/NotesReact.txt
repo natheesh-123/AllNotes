@@ -16,7 +16,9 @@
     -text Editor
 
 
-*3 ways to Create a react Project
+
+*creation of react project:
+-3 ways to Create a react Project
     1. by using npm : need to install configuration file.
                    1: npm instal/i -g create-react-app
                    2: create-react-app appname
@@ -31,6 +33,9 @@
     3. by using vite : it creates a project with minimum packages.
 
 
+
+
+React vs Angular
 
 Parameters                  React               Angular
 Library/Framework           Library             Framework
@@ -50,6 +55,8 @@ Developer                   Facebook            Google
     -public: it contain static data and file in it.
 
 
+
+
 *react is component basis technology
     -component: it is partial part of react project
                 -which we can resuse throught react project
@@ -60,6 +67,17 @@ Developer                   Facebook            Google
 *Types of component
     1. function component : when your main focus is on UI design
     2. class component : when you have to implement complex logic in that we use class component.
+---
+--How to display component output:--
+-display a component's output by rendering the component within another component or directly in the root element.
+1.Create a component using a function or a class.
+
+2.Use the component in JSX by writing it like an HTML tag (<ComponentName />).
+=>using in another component =>App.js
+3.Render the root component to the DOM using React's rendering methods.
+---
+
+
 
 *JSX - javascript + XML
     -it allows us to write HTML code on react.
@@ -67,6 +85,9 @@ Developer                   Facebook            Google
     -in JSX we have to rap multiple element inside one parent element.
     -parent element must be any block element <div><h2><p>, etc
 
+
+
+--props: pass props to make your component's output dynamic.--
 *props - Properties
     - it is a parameter or functional parameter which is used to pass data within componenets
     - propes return data in object format
@@ -74,6 +95,8 @@ Developer                   Facebook            Google
     -we can access props in Class component by writing this.props.propsname
 
 *method and event in react
+
+
 
 *state : 
     -it is used to handle essential data in class component
