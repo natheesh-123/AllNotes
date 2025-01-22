@@ -29,6 +29,7 @@ HCJ
      -selectors:CSS selectors are used to "select" and style specific HTML elements(for both internal css and external css)
 		1)element (or) tag name (or) --type-- selector :
 			-In this we use element or tag name to aply css property
+
 			ex:/* Styles all `<p>` tags */
 				p {
 					color: blue;
@@ -42,6 +43,7 @@ HCJ
 
 		2)Group selector : 
 			-in this we make group selector to apply css property for multiple elements
+
 			ex:/* Styles both `<h1>` and `<p>` tags */
 				h1, p {
 					font-family: Arial, sans-serif;
@@ -55,6 +57,7 @@ HCJ
 
 		3)Id selector : 
 			-if you have to apply css property to an single element in that case we use it
+
 			ex:/* Styles the element with the ID "main-heading" */
 				#main-heading {
 					font-size: 24px;
@@ -70,6 +73,7 @@ HCJ
 		4)Class Selector : 
 			-if you have to apply a specific css property to a bunch of elements
 			-Selects elements with a specific class.
+
 			ex:/* Styles elements with the "highlight" class */
 				.highlight {
 					background-color: yellow;
@@ -85,6 +89,7 @@ HCJ
 		5)Universal Selector : 
 			-if you have to apply css property to all elements
 			-Selects all elements on the page.
+
 			ex:/* Styles every element */
 				* {
 					margin: 0;
@@ -102,13 +107,17 @@ HCJ
 
 	3.for Javascript:
 		1)Inline JS:-  JS is written directly within an HTML elements attribute (rarely used)
+
 			ex: <button onclick="alert('button clicked')" >click me </button>
 					(OR)
 			    <button onclick="ShowAllert()" >click me </button>
 
 		2)Internal JS:- write code inside <script> tag in HTML <body> section.
+
 			ex:<script> hi write code here </script>
+
 		3)External JS:- (separate ( simple.js ) & specify js file in <script> inside (HTML <head> section)	
+
 			ex: <script src="./validation.js"></script>
 		
 	@note : use <script> in either  <head> or <body> section.
@@ -143,7 +152,7 @@ pre-req:
 		
 
 
-*In react 
+------------*using HCJ In react--------------------- 
 
 	1.HTML in React
 		-you can write HTML using JSX syntax inside Javascript files. JSX allows you to write HTML-like code
@@ -155,53 +164,58 @@ pre-req:
 		1)Internal css:-
 			-Internal CSS is written directly within the component using the style attribute.
 			-The styles are defined as a JavaScript object and passed to the style attribute.
+
 			ex:
-import React from 'react'
+				import React from 'react'
 
-function InternalCssA() {
+				function InternalCssA() {
 
-    const headingStyle = {
-        color: 'blue',
-        fontSize: '24px',
-        textAlign: 'center',
-    };
-    return (
-        <div>
-                
-                <h1 style={headingStyle}>Internal CSS in React</h1>
-               
-                <p style={{ color: 'gray', fontSize: '18px' }}>This is styled using inline CSS.</p>  {/* Inline Styles in JSX */}
-        </div>
-    )
-}
+					const headingStyle = {
+						color: 'blue',
+						fontSize: '24px',
+						textAlign: 'center',
+					};
+					return (
+						<div>
+								
+								<h1 style={headingStyle}>Internal CSS in React</h1>
+							
+								<p style={{ color: 'gray', fontSize: '18px' }}>This is styled using inline CSS.</p>  {/* Inline Styles in JSX */}
+						</div>
+					)
+				}
 
-export default InternalCssA;
+				export default InternalCssA;
+
 
 		2)External css:- 
 			-External CSS is written in a separate .css file and imported into the component.
-			ex:  separate css file (first.css) & import './first.css' in another component.
+
+			ex:  separate css file (first.css) & import './first.css'(using realtive path) in another component.
 
 
 		3)Module css:- 
 			-it is used when we have to design for a particuler component.
 			---CSS Modules provide scoped styles, meaning styles defined in one file won't affect elements in other files.---
             		-we save file with fileName.module.css
+
 			ex:
 				import React from 'react';
-import styles from './App.module.css';
+				import styles from './App.module.css';
 
-function App() {
-    return (
-        <div>
-            <h1 className={styles.heading}>CSS Modules in React</h1>
-            <p className={styles.paragraph}>This is styled using CSS Modules.</p>
-        </div>
-    );
-}
+				function App() {
+					return (
+						<div>
+							<h1 className={styles.heading}>CSS Modules in React</h1>
+							<p className={styles.paragraph}>This is styled using CSS Modules.</p>
+						</div>
+					);
+				}
 
-export default App;
+				export default App;
 
-*react CSS vs normal CSS pro[erties:
+
+*react CSS vs normal CSS properties:
 
 	-CSS properties are based on the CSS specification, and these remain consistent across HTML, 
 JavaScript (for DOM manipulation), and React.
@@ -212,6 +226,79 @@ JavaScript (for DOM manipulation), and React.
 	Used in JavaScript: element.style.backgroundColor = "red";
 	Used in React: style={{ backgroundColor: "red" }}
 
--Write and link files:
-	-create HTML structure in index.html
-	-
+
+#*Relative path in react:
+	A relative path in React is used to import files based on the 
+	current file's location in the project directory.
+	         =>  ./: Refers to the current folder where the file is located.
+             => ../: Moves up one directory level.
+             => ../../: Moves up two directory levels.
+             => folderName/...: Navigates into a specific folder.
+
+
+------------#*how to use images in react:--------------------------------
+
+approach 1: Importing and Using an Image in a React Component
+		-directly save images in project folder.
+			>src 
+			>asserts
+				>images
+					bike.jpg
+
+	=> import bird from '../assets/images/bike.jpg'
+	=> <img src={bird} alt='bird'></img>
+
+
+
+approach 2: use public URLs (or) external URLs 
+			===> sueful for images hosted on a CDN or external server.
+   -dirctly use URLs 
+		=> <img src='https://media.istockphoto.com/id/1911602365/photo/new-life-in-forest.jpg' alt='leaf'></img>
+
+   -passing URL through props
+		=> <UseImagePUrl imageurlp='https://media.istockphoto.com/id/1911602365/photo/new-life-in-forest.jpg'></UseImagePUrl>
+
+approach -3:  using CSS background images 
+		-setting images as background using css.
+
+approach -4:
+
+
+
+
+
+
+
+
+#*props & destructering:
+
+-props:
+
+
+-------------------#*important methods used for manipulating data in react:-------------------------
+
+ES-5:
+
+-map()
+-forEach()
+-filter()
+
+-every()  -some() {rarely used}
+
+ES-6:
+
+-spread operator
+
+react ES6:
+		Classes
+		Arrow Functions
+		Variables (let, const, var)
+		Array Methods like .map()
+		Destructuring
+		Modules
+			--
+		Ternary Operator
+		Spread Operator
+
+
+		    
