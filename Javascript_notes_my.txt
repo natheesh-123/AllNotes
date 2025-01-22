@@ -1,3 +1,16 @@
+HCJ
+
+*pre-req:
+
+1)install vs code 
+2)install extension(optional)
+	-Extensions for syntax highlighting, auto-completion, and formatting.
+	-like, JavaScript (ES6) Code Snippets
+3)Live server (optional)
+	-Launches a local development server and reloads your browser on file save.
+
+
+
 
 #*VS code setup for HCJ:
 
@@ -105,11 +118,32 @@
 
 	2.for CSS: & 3.for HTML:
 		in the above simple.js file , you can manipulate HTML and css using the Document Object Model(DOM).
+
+
+
 		
-	
+________________REACT_____________________	
 
-In react 
+pre-req:
 
+1)Node.js and npm
+	-why we need this:
+		React relies on Node.js for its runtime environment and npm (or yarn) to manage dependencies.
+	-how to install:
+		Download from Node.js official site and install the LTS version.
+	-verfy installed or not:
+		node -v
+		npm -v
+
+2)VS Code
+3)Extensions
+	-ES7+ React/Redux/React-Native Snippets (used)
+		Why: Provides useful snippets for quickly creating React components, imports, and more.
+	-JavaScript (ES6) Code Snippets
+		
+
+
+*In react 
 
 	1.HTML in React
 		-you can write HTML using JSX syntax inside Javascript files. JSX allows you to write HTML-like code
@@ -118,14 +152,65 @@ In react
 		-JSX expressions must be wrapped in a single parent element, like <div> 
 		
 	2.CSS in React
-		1)Internal css:- 
+		1)Internal css:-
+			-Internal CSS is written directly within the component using the style attribute.
+			-The styles are defined as a JavaScript object and passed to the style attribute.
+			ex:
+import React from 'react'
 
-		2)External css:-
+function InternalCssA() {
 
-		3)Module css:-
-			-it is used when we have to design for a particuler component
-            -we save file with fileName.module.css
+    const headingStyle = {
+        color: 'blue',
+        fontSize: '24px',
+        textAlign: 'center',
+    };
+    return (
+        <div>
+                
+                <h1 style={headingStyle}>Internal CSS in React</h1>
+               
+                <p style={{ color: 'gray', fontSize: '18px' }}>This is styled using inline CSS.</p>  {/* Inline Styles in JSX */}
+        </div>
+    )
+}
 
+export default InternalCssA;
+
+		2)External css:- 
+			-External CSS is written in a separate .css file and imported into the component.
+			ex:  separate css file (first.css) & import './first.css' in another component.
+
+
+		3)Module css:- 
+			-it is used when we have to design for a particuler component.
+			---CSS Modules provide scoped styles, meaning styles defined in one file won't affect elements in other files.---
+            		-we save file with fileName.module.css
+			ex:
+				import React from 'react';
+import styles from './App.module.css';
+
+function App() {
+    return (
+        <div>
+            <h1 className={styles.heading}>CSS Modules in React</h1>
+            <p className={styles.paragraph}>This is styled using CSS Modules.</p>
+        </div>
+    );
+}
+
+export default App;
+
+*react CSS vs normal CSS pro[erties:
+
+	-CSS properties are based on the CSS specification, and these remain consistent across HTML, 
+JavaScript (for DOM manipulation), and React.
+
+	ex:
+	CSS Property: background-color
+	Used in HTML: <div style="background-color: red;">
+	Used in JavaScript: element.style.backgroundColor = "red";
+	Used in React: style={{ backgroundColor: "red" }}
 
 -Write and link files:
 	-create HTML structure in index.html

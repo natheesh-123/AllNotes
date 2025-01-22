@@ -1,0 +1,51 @@
+
+
+*React css vs normal css
+
+In React, the style attribute expects a JavaScript object, unlike traditional HTML, where the style attribute takes a string.
+ React translates these objects into inline styles for the DOM.
+
+
+
+CSS properties are based on the CSS specification, and these remain consistent across HTML, JavaScript (for DOM manipulation), and React.
+For example:
+CSS Property: background-color
+Used in HTML: <div style="background-color: red;">
+Used in JavaScript: element.style.backgroundColor = "red";
+Used in React: style={{ backgroundColor: "red" }}
+
+
+Differences in React
+1)CamelCase Conversion
+React requires CSS property names to be in camelCase format in the style attribute because it treats styles as a JavaScript object.
+Example:
+CSS: font-size → React: fontSize
+CSS: text-align → React: textAlign
+
+2)Values for Unitless Properties
+Certain CSS properties, like z-index, opacity, or flex, are unitless in CSS. In React, you do not need to specify units like px for these.
+Example:
+CSS: flex: 1; → React: flex: 1
+CSS: z-index: 100; → React: zIndex: 100
+
+3)String Values for Non-Unitless Properties
+For properties that typically require units (like width, height, margin), React requires you to specify the unit explicitly if it's not 0.
+Example:
+CSS: width: 100px; → React: width: "100px"
+CSS: margin: 1rem; → React: margin: "1rem"
+
+
+4)Dynamic and Conditional Styling
+React's style attribute allows dynamic logic using JavaScript expressions, which isn't possible in plain HTML or CSS.
+Example:
+const dynamicStyle = {
+    color: isActive ? "green" : "red",
+    fontSize: isLarge ? "24px" : "16px",
+};
+
+<h1 style={dynamicStyle}>Dynamic Styling in React</h1>
+
+
+-CSS property names are consistent across HTML, JavaScript, and React, but React uses camelCase for naming.
+-React's style attribute expects values as JavaScript expressions, making it more flexible for dynamic and conditional styling.
+-Some CSS features like pseudo-classes and media queries need to be implemented using external CSS or CSS-in-JS libraries.
