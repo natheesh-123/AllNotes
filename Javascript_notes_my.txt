@@ -272,7 +272,7 @@ approach -4:
 
 #*props & destructering:
 
--props:
+-props:	
 
 
 -------------------#*important methods used for manipulating data in react:-------------------------
