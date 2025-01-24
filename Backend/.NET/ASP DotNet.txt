@@ -1,0 +1,123 @@
+comands that we should use:(command in package manager)
+1.  dotnet new tool-manifest
+
+2.  dotnet tool install --local dotnet-ef
+
+Scaffold-DbContext "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Company;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=False;
+Application Intent=ReadWrite;Multi Subnet Failover=False" Microsoft.EntityFrameworkCore.SqlServer -O models 
+
+frameworks need to install:(tool->nugutpackage Manager->package Manager solution->browse)
+1.Microsoft.EntityFrameworkCore.SqlServer
+
+
+program.cs
+builder.Services.AddDbContext<CompanyContext>(options => options.UseSqlServer(
+    builder.Configuration.GetConnectionString("DefaultConnection")));
+    
+    
+appsettings.json
+ "ConnectionStrings": {
+   "DefaultConnection": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Company;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"
+ },
+ 
+ 
+ CompanyContext.cs
+ using Microsoft.EntityFrameworkCore;
+
+namespace MyDemoApp.Models
+{
+    public class CompanyContext:DbContext
+    {
+        public CompanyContext(DbContextOptions<CompanyContext> options) : base(options) { }
+        public DbSet<Information> Information { get; set; }
+    }
+}
+ 
+ dotnet ef migrations add CompanyDB
+ 
+ dotnet ef database update
+ 
+ 
+ Information.cs
+ 
+ namespace MyDemoApp.Models
+{
+    public class Information
+    {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string License { get; set; }
+
+        public DateTime Established { get; set; }
+
+        public decimal Revenue { get; set; }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Object reference not set to an instance of an object.
+Restored C:\learning\Changepond_training\EFcore\MyDemoApp\MyDemoApp\MyDemoApp.csproj (in 1.23 sec).
+Time Elapsed: 00:00:01.4386787
+
+
+
+
+
+dotnet ef migrations add CompanyDB --project "C:\learning\Changepond_training\EFcore\MyDemoApp\MyDemoApp\MyDemoApp.csproj"
+
+dotnet ef database update --project "C:\learning\Changepond_training\EFcore\MyDemoApp\MyDemoApp\MyDemoApp.csproj"
+
+"C:\path_to_your_project\YourProject.csproj"
+
+
+
+
+
+DepartmentController
+
+public IActionResult Index()
+{
+
+return view(contect.Department.AsNoTracking);
+}
+
+Index.cshtml
+
+
+
+
+It looks like the error you're encountering is due to the file MyDemoApp.exe being locked by another process. Here are a few steps you can try to resolve this issue:
+
+1. 
+Close the Running Application: Ensure that MyDemoApp is not running. You can check the Task Manager (Ctrl + Shift + Esc) and end the process if it's still running.
+2. 
+Restart Visual Studio: Sometimes, simply restarting Visual Studio can release the lock on the file.
+3. 
+Clean the Solution: In Visual Studio, go to Build > Clean Solution, and then try building the project again.
+4. 
+Delete the bin and obj Folders: Manually delete the bin and obj folders in your project directory. These folders will be recreated when you build the project again.
+5. 
+Check for Background Processes: Ensure no other processes are using the file. You can use tools like Process Explorer to find and terminate any processes that might be locking the file.
+6. 
+Restart Your Computer: If the above steps don't work, try restarting your computer to release any file locks.
+
+Give these steps a try and let me know if the issue persists! blush
+
+
+builder.Services.Addsession();
+

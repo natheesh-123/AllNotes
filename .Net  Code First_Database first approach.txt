@@ -1,0 +1,265 @@
+code first approach:
+
+-create models classes(entity classes) 
+-create DbContext class
+
+then migrate :
+
+dotnet ef migrations add CompanyDB --project "C:\learning\Changepond_training\EFcore\MyDemoApp\MyDemoApp\MyDemoApp.csproj"
+
+dotnet ef database update --project "C:\learning\Changepond_training\EFcore\MyDemoApp\MyDemoApp\MyDemoApp.csproj"
+
+this will create table in chosen database.
+
+
+after that create contollers and etc.
+
+
+
+
+Reservation.cs
+
+namespace WebApi.Models
+{
+    public class Reservation
+    {
+
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string StartLocation { get; set; }
+        public string EndLocation { get; set; } = string.Empty;
+
+    }
+}
+
+
+INTERFACE
+
+namespace WebApi.Models
+{
+    public interface IRepository
+    {
+
+        Reservation AddReservation(Reservation reservation);
+        Reservation UpdateReservation(Reservation reservation);
+        public void DeleteReservation(int id);
+        IEnumerable<Reservation> reservations { get; }
+
+        Reservation this[int id] { get; }
+
+    }
+}
+
+
+IMPLEMENTING INTERFACE
+
+
+namespace WebApi.Models
+{
+    public class Repository : IRepository
+    {
+
+        private Dictionary<int, Reservation> items;
+        public Repository() { 
+            items= new Dictionary<int, Reservation>();
+
+            new List<Reservation>
+            {
+                new Reservation() { Id = 1, Name = "natheesh", StartLocation = "mumbai", EndLocation = "chennai" },
+                new Reservation() { Id = 2, Name = "ravi", StartLocation = "pune", EndLocation = "chennai" },
+                new Reservation() { Id = 3, Name = "mani", StartLocation = "mumbai", EndLocation = "pune" },
+                new Reservation() { Id = 4, Name = "kavin", StartLocation = "chennai", EndLocation = "mumbai" }
+            }.ForEach(r=>AddReservation(r));
+
+        }
+
+        public Reservation this[int id] => items.ContainsKey(id) ? items[id] : null;
+
+
+        public IEnumerable<Reservation> reservations => items.Values;
+
+       
+        public Reservation AddReservation(Reservation reservation)
+        {
+            if (reservation.Id == 0)
+            {
+                int key = items.Count;
+                while (items.ContainsKey(key))
+                {
+                    key++;
+                }
+                reservation.Id = key;
+            }
+
+            items[reservation.Id] = reservation;
+            return reservation;
+        }
+
+        public void DeleteReservation(int id)
+        {
+            items.Remove(id);
+        }
+
+        public Reservation UpdateReservation(Reservation reservation)
+        {
+            return AddReservation(reservation);
+        }
+
+    }
+}
+
+
+
+ReaservationContext.cs
+
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
+using WebApi.Models;
+
+namespace WebApi.Controllers
+{
+    public class ReservationContext : DbContext
+
+    {
+
+        public ReservationContext(DbContextOptions<ReservationContext> options) : base(options) { }
+        
+
+        public DbSet<Reservation> Reservations { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //base.OnModelCreating(modelBuilder);
+        }
+
+
+
+    }
+}
+
+
+Reservation controller.cs
+
+using Microsoft.AspNetCore.Mvc;
+using WebApi.Models;
+
+namespace WebApi.Controllers
+{
+    [ApiController]
+    [Route("api/[Controller]")]
+    public class ReservationController : ControllerBase
+    {
+        private IRepository repository;
+        public ReservationController(IRepository rep)
+        {
+            repository = rep;
+        }
+
+        [HttpGet]
+        public IEnumerable<Reservation> Get() => repository.reservations;
+
+//new
+
+        [HttpGet("{id}")]
+
+        public ActionResult<Reservation> Get(int id)
+        {
+            if (id == 0)
+            {
+                return BadRequest("Value must be passed in the request body");
+                ;
+            }
+            else
+            {
+                return Ok(repository[id]);
+            }
+        }
+        [HttpPost]
+        public Reservation Post([FromBody] Reservation res) =>
+            repository.AddReservation(new Reservation
+            {
+                Name = res.Name,
+                StartLocation = res.StartLocation,
+                EndLocation = res.EndLocation
+            });
+
+        /*
+
+        {
+    "Id":"6",
+    "Name":"Tamil",
+    "StartLocation":"Dindigul",
+    "EndLoaction":"covai"
+}
+        */
+
+
+
+
+
+        [HttpPut]
+
+        public Reservation Put([FromForm] Reservation res) =>
+            repository.UpdateReservation(res);
+
+
+        [HttpDelete("{id}")]
+        public void Delete(int id) => repository.DeleteReservation(id);
+
+    }
+}
+
+
+
+appsetting.json
+
+
+   "ConnectionStrings": {
+       "DefaultConnection": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Reservation;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"
+   },
+
+
+PROGRAM.CS
+
+
+
+builder.Services.AddSingleton<IRepository, Repository>();
+
+builder.Services.AddDbContext<ReservationContext>(options => options.UseSqlServer(
+    builder.Configuration.GetConnectionString("DefaultConnection")));
+
+
+
+
+
+--------*Database first approach:--------------------
+
+-create database manually
+-create table manually
+
+
+after that use scafffold to generate the entity classes and context classes
+
+=>package manager console :
+
+Scaffold-DbContext "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Company;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=False;
+Application Intent=ReadWrite;Multi Subnet Failover=False" Microsoft.EntityFrameworkCore.SqlServer -O models 
+
+
+
+after scaffold
+
+=> the Dbcontext class and entity class(model class) are auto generated
+
+=>it will configure the database connection in :
+
+Dbcontext class
+
+   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=CompanyDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+
+
+
+after that  manually create controllers class and perform crud.
+
+
