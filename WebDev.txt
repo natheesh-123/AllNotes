@@ -533,7 +533,7 @@ react ES6
 
 
 ---------------------React concepts used---------------------
--pre-req for React
+-pre-req for React 
 -react project creation
 -How to start react project
 -How to display react project
@@ -551,7 +551,9 @@ react ES6
 -How to use Bootstrap in react
 -render
     => Conditional Mendering.
--How to use css in react
+
+-//How to use css in react
+ 
 -Fragment in react
 -Component Interaction.
 
@@ -641,7 +643,7 @@ pre-req:
 		-JSX uses camel case for attributes (eg. className(xx class) htmlFor instead of for)
 		-JSX expressions must be wrapped in a single parent element, like <div> 
 		
-	2.CSS in React
+       	2.CSS in React
 		1)Internal css:-
 			-Internal CSS is written directly within the component using the style attribute.
 			-The styles are defined as a JavaScript object and passed to the style attribute.
@@ -699,13 +701,22 @@ pre-req:
 *react CSS vs normal CSS properties:
 
 	-CSS properties are based on the CSS specification, and these remain consistent across HTML, 
-JavaScript (for DOM manipulation), and React.
+  JavaScript (for DOM manipulation), and React.
 
 	ex:
 	CSS Property: background-color
 	Used in HTML: <div style="background-color: red;">
 	Used in JavaScript: element.style.backgroundColor = "red";
 	Used in React: style={{ backgroundColor: "red" }}
+
+
+
+        3.JS in React
+		-In React, JavaScript expressions are written inside curly braces {} within JSX. 
+		-These expressions allow you to embed dynamic content, execute logic,
+	  or render variables and functions within the JSX markup and etc..
+
+
 
 
 #*Relative path in react:
@@ -745,6 +756,9 @@ approach -3:  using CSS background images
 approach -4: in Constant area 
 
 
+
+
+-#props
 
 
     
