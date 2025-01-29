@@ -255,10 +255,7 @@ BS5 Grid XXL
 ===================Javascript Revise=====================
 
 1.JS variables -/-
-2.Data Types 
-3.Functions
-4.Arrow Function
-5.Objects
+2.Dat cts
 6.Array
 7.Maps
 8.strings
