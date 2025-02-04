@@ -1,0 +1,90 @@
+
+
+-----*database----
+
+create database attendancemanagement;
+
+----*tables----
+
+1.users
+	
+		
+	
+
+
+
+
+2.attendance
+3.leave requests
+4.roles
+5.permissions
+6.leave types
+
+
+*storing image 
+
+=>using  mysql workbench
+
+	INSERT INTO Users (profile_picture) 
+	VALUES (
+        LOAD_FILE('/path/to/your/image.jpg')
+	);
+
+-LOAD_FILE function in MySQL refers to the file 
+system path on the server where the MySQL server is running
+=> mysql query to check
+
+SHOW VARIABLES LIKE 'secure_file_priv';
+
+located for windows: (like)
+secure_file_priv   C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\
+
+
+=> c# code to insert iamge
+
+
+using MySql.Data.MySqlClient;
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        string connectionString = "server=localhost;user=root;database=mydatabase;port=3306;password=mypassword";
+
+        using (MySqlConnection conn = new MySqlConnection(connectionString))
+        {
+            conn.Open();
+
+            // Prepare the SQL command
+            string sql = "INSERT INTO Users (name, email, password, role, profile_picture) VALUES (@name, @email, @password, @role, @profile_picture)";
+
+            using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+            {
+                // Set the parameters
+                cmd.Parameters.AddWithValue("@name", "John Doe");
+                cmd.Parameters.AddWithValue("@email", "john.doe@example.com");
+                cmd.Parameters.AddWithValue("@password", "hashed_password");
+                cmd.Parameters.AddWithValue("@role", "user");
+
+                // Load the image
+                byte[] imageData = File.ReadAllBytes("C:\\path\\to\\your\\image.jpg");
+                cmd.Parameters.AddWithValue("@profile_picture", imageData);
+
+                // Execute the command
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
+}
+
+
+
+
+
+
+note:
+Make sure that the MySQL server has permission 
+to read the file and that the secure_file_priv system variable is 
+configured correctly (pointing to the directory where the image is stored).
