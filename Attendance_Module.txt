@@ -1,6 +1,6 @@
 
 in visual studio code in angular project give the code based on the below scenario 
-i
+
      1.Attendancecomponent the ui looks like based on the roles
   for role_id variable is 1=Student(or) 2= Teacher  3=Admin. 
    
@@ -42,9 +42,14 @@ admin role ui look like
 	View Attendance of student/Teacher   
 
 	1)Mark Present/Absent =>if the request is accepted  based on full day (or) shortfall
-                                  create the another variable status and set that to be present if the request is fullday else false.                
+                                  create the another variable status and set that to be present if the request is fullday else false.  
+
+
+and give the controller code also in visual studio asp.net c# code
+
+              
 --refer this-- 
-i have a asp.net code in backend
+i have a asp.net c# code in backend
 
 ---Attendance.cs---
 
@@ -73,8 +78,36 @@ public partial class Attendance
 }
 
 
+--Attendancerequest.cs--
 
-Database Table in my sql
+using System;
+using System.Collections.Generic;
+
+namespace Attendance_management.Models;
+
+public partial class Attendancerequest
+{
+    public int Id { get; set; }
+
+    public int? UserId { get; set; }
+
+    public DateOnly Date { get; set; }
+
+    public string Status { get; set; } = null!;
+
+    public string? Remarks { get; set; }
+
+    public DateTime? CreatedAt { get; set; }
+
+    public DateTime? UpdatedAt { get; set; }
+
+    public virtual User? User { get; set; }
+}
+
+
+
+
+Database Table in mysql
  1.Attendance
 	o id (Primary Key)
 	o user_id (Foreign Key to Users table)
@@ -85,12 +118,12 @@ Database Table in my sql
 	o updated_at
 
  2.Roles
-      o id (Primary Key)
-      o role_name (Student, Teacher, Staff, Admin)
-      o created_at
-      o updated_at
+	o id (Primary Key)
+	o role_name (Student, Teacher, Staff, Admin)
+	o created_at
+	o updated_at
 
-3.•	Users
+3.Users
 	o id (Primary Key)
 	o name
 	o email
@@ -109,3 +142,9 @@ Attendance Table Relationship
 Users Table Relationships:
 	o Users have a one-to-many relationship with Attendance (one user can have multiple attendance records).
 	o Users have a many-to-one relationship with Roles (each user has one role, but each role can belong to many users).
+
+ Roles Table Relationships:
+	o Roles have a one-to-many relationship with Users (each role can be assigned to multiple users).
+	o Roles have a one-to-many relationship with Permissions (each role can have multiple permissions).
+
+
