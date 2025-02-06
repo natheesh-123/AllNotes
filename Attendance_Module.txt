@@ -1,0 +1,111 @@
+
+in visual studio code in angular project give the code based on the below scenario 
+i
+     1.Attendancecomponent the ui looks like based on the roles
+  for role_id variable is 1=Student(or) 2= Teacher  3=Admin. 
+   
+
+only show the given scenario based ui and hides the other ui for different role_id 
+
+
+for stuent role(role_id =1) the  ui look like
+      using used_id the put attendance 
+	1)Select Date =>for every date the  in time and out time button should be there
+              
+	2)Attendance Request goes to teacher =>only if two buttons are pressed the data stored in two variables(the two variables stores times) and
+                     the two variables time difference is equal or greaten than 8 hours and another variable stores bool value true
+ then only the and the request sent to the teacher for that date as (full day). 
+if time difference is less than 8 hours (or)  if one button pressed (or) no button pressed for that date the two  variables  stores data(the two variables stores times) and its  time difference is likely less than 8 hours and another variable stores bool value false and the request goes teacher is (short fall).
+                                  
+
+teacher role ui look like
+
+     1)Mark Present/Absent =>if the request is accepted  based on full day (or) shortfall
+                                  create the another variable status and set that to be present if the request is fullday else false.
+
+     2)View Attendance => Teacher also view the attendance for all students give that type of code also(Daily/Weekly/Monthly View)
+	Attendance History
+
+using used_id the put attendance 
+      3)Teacher also have same
+
+		1)Select Date =>for every date the  in time and out time button should be there
+              
+	2)Attendance Request goes to admin=>only if two buttons are pressed the data stored in two variables(the two variables stores times) and
+                     the two variables time difference is equal or greaten than 8 hours and another variable stores bool value true
+ then only the and the request sent to the admin for that date as (full day). 
+if time difference is less than 8 hours (or)  if one button pressed (or) no button pressed for that date the two  variables  stores data(the two variables stores times) and its  time difference is likely less than 8 hours and another variable stores bool value false and the request goes admin is (short fall).
+    
+
+admin role ui look like 
+
+	View Attendance of student/Teacher   
+
+	1)Mark Present/Absent =>if the request is accepted  based on full day (or) shortfall
+                                  create the another variable status and set that to be present if the request is fullday else false.                
+--refer this-- 
+i have a asp.net code in backend
+
+---Attendance.cs---
+
+using System;
+using System.Collections.Generic;
+
+namespace Attendance_management.Models;
+
+public partial class Attendance
+{
+    public int Id { get; set; }
+
+    public int? UserId { get; set; }
+
+    public DateOnly Date { get; set; }
+
+    public string Status { get; set; } = null!;
+
+    public string? Remarks { get; set; }
+
+    public DateTime? CreatedAt { get; set; }
+
+    public DateTime? UpdatedAt { get; set; }
+
+    public virtual User? User { get; set; }
+}
+
+
+
+Database Table in my sql
+ 1.Attendance
+	o id (Primary Key)
+	o user_id (Foreign Key to Users table)
+	o date
+	o status (Present, Absent)
+	o remarks (Optional notes)
+	o created_at
+	o updated_at
+
+ 2.Roles
+      o id (Primary Key)
+      o role_name (Student, Teacher, Staff, Admin)
+      o created_at
+      o updated_at
+
+3.•	Users
+	o id (Primary Key)
+	o name
+	o email
+	o password
+	o role (Student, Teacher, Staff, Admin)
+	o profile_picture
+	o created_at
+	o updated_at
+
+
+Attendance Table Relationship
+	o Many-to-One with Users Table: Each attendance record (user_id) is associated with one user (id in the Users table).
+
+
+
+Users Table Relationships:
+	o Users have a one-to-many relationship with Attendance (one user can have multiple attendance records).
+	o Users have a many-to-one relationship with Roles (each user has one role, but each role can belong to many users).
