@@ -6,6 +6,9 @@ dotnet tool install --local dotnet-ef
 dotnet ef --version
 
 
+
+frameworks need to install:
+
 tool->nugutpackage Manager->package Manager console
 
 dotnet add package Microsoft.EntityFrameworkCore
@@ -40,11 +43,36 @@ builder.Services.AddDbContext<CompanyDbContext>(options =>
 
    dotnet ef migrations add CompanyDB --project "C:\Projects\MySolution\MyApp.Data\demo.csproj"
    dotnet ef database update --project "C:\Projects\MySolution\MyApp.Data\demo.csproj"
-
+	"C:\path_to_your_project\YourProject.csproj"
 
 
 ---------------------------------------
 
 1.Database First Approach:
+
+
+
+
+*incase of file lock 
+
+
+It looks like the error you're encountering is due to the file MyDemoApp.exe being locked by another process. Here are a few steps you can try to resolve this issue:
+
+1. 
+Close the Running Application: Ensure that MyDemoApp is not running. You can check the Task Manager (Ctrl + Shift + Esc) and end the process if it's still running.
+2. 
+Restart Visual Studio: Sometimes, simply restarting Visual Studio can release the lock on the file.
+3. 
+Clean the Solution: In Visual Studio, go to Build > Clean Solution, and then try building the project again.
+4. 
+Delete the bin and obj Folders: Manually delete the bin and obj folders in your project directory. These folders will be recreated when you build the project again.
+5. 
+Check for Background Processes: Ensure no other processes are using the file. You can use tools like Process Explorer to find and terminate any processes that might be locking the file.
+6. 
+Restart Your Computer: If the above steps don't work, try restarting your computer to release any file locks.
+
+Give these steps a try and let me know if the issue persists! blush
+
+
 	
 
