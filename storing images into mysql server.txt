@@ -7,13 +7,6 @@ create database attendancemanagement;
 ----*tables----
 
 1.users
-	
-		
-	
-
-
-
-
 2.attendance
 3.leave requests
 4.roles

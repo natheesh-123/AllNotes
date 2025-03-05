@@ -1,5 +1,0 @@
-
-#*React ES6
-ES6 stands for ECMAScript 6.
-
--ECMAScript was created to standardize JavaScript.
